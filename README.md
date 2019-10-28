@@ -7,4 +7,5 @@
 5. SchemaModel表模型
 6. 支持go mod
 
-Lucifer Lai at 2019-10-28
+Lucifer Lai 
+2019-10-28
