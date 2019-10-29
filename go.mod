@@ -1,4 +1,4 @@
-module github.com/laisyz/sqlxyz
+module github.com/laixyz/sqlxyz
 
 go 1.13
 
