@@ -10,7 +10,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// Prepare 实现fmt.Sprintf("%d", 1000) 用于防止SQL注入
+// Prepare 实现fmt.Sprintf("%d", 1000) 用于防止SQL注入 Prepare("userId=?",userId)
 func Prepare(format string, a ...interface{}) string {
 	return fmt.Sprintf(format, a...)
 }

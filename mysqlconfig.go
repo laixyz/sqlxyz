@@ -23,7 +23,6 @@ type MySQLConfig struct {
 	ReadTimeout     string `ini:"read_timeout"`  //readTimeout=30s
 	WriteTimeout    string `ini:"write_timeout"` //writeTimeout=30s
 	Timeout         string `ini:"timeout"`       //timeout=30s
-	ParseTime       bool   `ini:"parse_time"`    //parseTime=true 会将date 或 datetime 字段自动专换成 time.Time
 	MaxIdleConns    int    `ini:"max_idle"`
 	MaxOpenConns    int    `ini:"max_open"`
 	ConnMaxLifetime string `ini:"max_life_time"`
@@ -62,11 +61,8 @@ func (mc *MySQLConfig) String() string {
 	params.Add("timeout", mc.Timeout)
 	params.Add("readTimeout", mc.ReadTimeout)
 	params.Add("writeTimeout", mc.WriteTimeout)
-	if !mc.ParseTime {
-		params.Add("parseTime", "false")
-	} else {
-		params.Add("parseTime", "true")
-	}
+
+	params.Add("parseTime", "true") //parseTime=true 会将date 或 datetime 字段自动专换成 time.Time
 
 	var strParam string
 	if len(params) > 0 {
