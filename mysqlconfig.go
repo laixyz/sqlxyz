@@ -26,6 +26,7 @@ type MySQLConfig struct {
 	MaxIdleConns    int    `ini:"max_idle"`
 	MaxOpenConns    int    `ini:"max_open"`
 	ConnMaxLifetime string `ini:"max_life_time"`
+	ParseTime       bool   `ini:"-"`
 }
 
 // String 参数输出dsn字符串
