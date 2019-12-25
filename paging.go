@@ -69,7 +69,7 @@ func SearchPager(Page, Total, PageSize int) (NewPage, PageCount, Offset int) {
 	} else {
 		NewPage = Page
 	}
-	if PageSize < 1 {
+	if PageSize == 0 {
 		if Total > 100 {
 			PageSize = 100
 		} else {
@@ -87,6 +87,13 @@ func SearchPager(Page, Total, PageSize int) (NewPage, PageCount, Offset int) {
 // NewPager 新的分页计算 Page 当前页 ReacordCount 总记录数, PageSize 页记录大小
 func NewPager(Page, RecordCount, PageSize int64) Pager {
 	var p Pager
+	if PageSize == 0 {
+		if RecordCount > 100 {
+			PageSize = 100
+		} else {
+			PageSize = RecordCount
+		}
+	}
 	if RecordCount <= PageSize {
 		p.Page = 1
 		p.PageCount = 1
