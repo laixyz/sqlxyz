@@ -69,6 +69,13 @@ func SearchPager(Page, Total, PageSize int) (NewPage, PageCount, Offset int) {
 	} else {
 		NewPage = Page
 	}
+	if PageSize < 1 {
+		if Total > 100 {
+			PageSize = 100
+		} else {
+			PageSize = Total
+		}
+	}
 	PageCount = int(math.Ceil(float64(Total) / float64(PageSize)))
 	if NewPage > PageCount {
 		NewPage = PageCount
@@ -102,8 +109,16 @@ func NewPager(Page, RecordCount, PageSize int64) Pager {
 	if p.Page > 1 {
 		p.BackPage = p.Page - 1
 	}
+	if PageSize < 1 {
+		if RecordCount > 100 {
+			PageSize = 100
+		} else {
+			PageSize = RecordCount
+		}
+	}
 	p.RecordCount = RecordCount
 	p.PageSize = PageSize
+
 	p.PageCount = int64(math.Ceil(float64(p.RecordCount) / float64(p.PageSize)))
 	if p.Page > p.PageCount {
 		p.Page = p.PageCount
